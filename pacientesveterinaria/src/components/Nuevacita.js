@@ -1,14 +1,18 @@
 import React, { Component } from "react";
+import uuid from "uuid";
+const stateInicial = {
+  cita: {
+    mascota: "",
+    propietario: "",
+    fecha: "",
+    hora: "",
+    sintomas: ""
+  },
+  error: false
+};
+
 class Nuevacita extends Component {
-  state = {
-    cita: {
-      mascota: "",
-      propietario: "",
-      fecha: "",
-      hora: "",
-      sintomas: ""
-    }
-  };
+  state = { ...stateInicial };
   handleChange = e => {
     console.log(e.target.name + ":" + e.target.value);
     //colocar lo que el usuario escribe en el state
@@ -19,14 +23,49 @@ class Nuevacita extends Component {
       }
     });
   };
+  handleSubmit = e => {
+    e.preventDefault();
+    //extraer los valores del state
+    const { mascota, propietario, fecha, hora, sintomas } = this.state.cita;
+
+    //validar los valores del state
+    if (
+      mascota === "" ||
+      propietario === "" ||
+      fecha === "" ||
+      hora === "" ||
+      sintomas === ""
+    ) {
+      this.setState({
+        error: true
+      });
+      return;
+    }
+    //generar objetos con los datos
+    const nuevaCita = { ...this.state.cita };
+    nuevaCita.id = uuid();
+    //Agregar ka cita al state de app
+    this.props.crearNuevaCita(nuevaCita);
+    //colocar ene l state el stateInicial
+    this.setState({
+      ...stateInicial
+    });
+  };
   render() {
+    //extraer valor del state
+    const { error } = this.state;
     return (
       <div className="card mt-5">
         <div className="card-body">
           <h2 className="card-title text-center mb-5">
             Llena el formulario crear una nueva cita
           </h2>
-          <form>
+          {error ? (
+            <div className="alert alert-danger mt2 mb-5 text-center">
+              Todos los campos son obligatorios
+            </div>
+          ) : null}
+          <form onSubmit={this.handleSubmit}>
             <div className="form-group row">
               <label className="col-sm-4 col-lg-2 col-form-label">
                 Nombre Mascota
