@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import uuid from "uuid";
+import PropTypes from "prop-types";
+
 const stateInicial = {
   cita: {
     mascota: "",
@@ -147,5 +149,7 @@ class Nuevacita extends Component {
     );
   }
 }
-
+Nuevacita.propTypes = {
+  crearNuevaCita: PropTypes.func.isRequired
+};
 export default Nuevacita;
