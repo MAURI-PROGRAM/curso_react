@@ -1,12 +1,17 @@
 import React, { Fragment } from "react";
-import PrimerComponente from "./componente/PrimerComponente";
-
+import Header from "./componente/Header";
+import Footer from "./componente/Footer";
+import Productos from "./componente/ListaProductos";
 function App() {
-  const empleado = {
-    nombre: "Michael Merchan",
-    trabajo: "programador"
-  };
-  return <Fragment />;
+  const fecha = new Date().getFullYear();
+
+  return (
+    <Fragment>
+      <Header titulo="tienda virtual" />
+      <Footer fecha={fecha} />
+      <Productos />
+    </Fragment>
+  );
 }
 
 export default App;
