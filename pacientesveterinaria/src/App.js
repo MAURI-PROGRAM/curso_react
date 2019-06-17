@@ -43,6 +43,9 @@ class App extends Component {
   };
 
   render() {
+    const hoy = new Date();
+    const fecha =
+      hoy.getDate() + "-" + (hoy.getMonth() + 1) + "-" + hoy.getFullYear();
     return (
       <div className="container">
         <Header titulo="Administrador Pacientes Veterinaria" />
@@ -56,6 +59,12 @@ class App extends Component {
               eliminarCita={this.eliminarCita}
             />
           </div>
+          <p className="col-md-10 mx-auto">
+            <span>
+              Todos los derechos reservados Michael Merchán curso React&copy;{" "}
+              {fecha}
+            </span>
+          </p>
         </div>
       </div>
     );
