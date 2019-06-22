@@ -85,7 +85,6 @@ class App extends Component {
   };
 
   render() {
-    console.log(2);
     const hoy = new Date();
     const fecha =
       hoy.getDate() + "-" + (hoy.getMonth() + 1) + "-" + hoy.getFullYear();

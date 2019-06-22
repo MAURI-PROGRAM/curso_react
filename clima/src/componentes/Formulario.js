@@ -22,9 +22,7 @@ const Formulario = ({ datosConsulta }) => {
     <form onSubmit={consultarClima}>
       <div className="input-field cil s12">
         <input type="text" name="ciudad" id="ciudad" onChange={handleChange} />
-        <label htmlFor="" htmlFor="ciudad">
-          ciudad
-        </label>
+        <label htmlFor="ciudad">ciudad</label>
       </div>
       <div className="input-field col s12">
         <select name="pais" id="" onChange={handleChange}>
