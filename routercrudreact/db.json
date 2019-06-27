@@ -11,6 +11,18 @@
       "nombrePlatillo": "Rib Eye 400",
       "categoria": "cortes",
       "id": 2
+    },
+    {
+      "nombrePlatillo": "ensalada nada",
+      "precioPlatillo": "144",
+      "categoria": "ensalada",
+      "id": 3
+    },
+    {
+      "nombrePlatillo": "tomatetodo",
+      "precioPlatillo": "1443",
+      "categoria": "bebida",
+      "id": 4
     }
   ]
 }
