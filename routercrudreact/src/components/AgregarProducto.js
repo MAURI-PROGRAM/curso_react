@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
 import Error from "./Error";
 import axios from "axios";
+import Swal from "sweetalert2";
 
-const AgregarProducto = () => {
+const AgregarProducto = ({ history, setnuevoProducto }) => {
   const [nombrePlatillo, setnombrePlatillo] = useState("");
   const [precioPlatillo, setprecioPlatillo] = useState("");
   const [categoria, setcategoria] = useState("");
@@ -24,9 +26,22 @@ const AgregarProducto = () => {
           categoria
         });
         console.log(resultado);
+        if (resultado.status === 201) {
+          Swal.fire(
+            "Producto Creado",
+            "El producto se creo correctamente",
+            "success"
+          );
+        }
       } catch (e) {
-        console.log(e);
+        Swal.fire({
+          type: "error",
+          title: "Error",
+          text: "Hubo un error, vuelve a intentarlo"
+        });
       }
+      setnuevoProducto(true);
+      history.push("/productos");
     }
   };
   return (
@@ -112,4 +127,4 @@ const AgregarProducto = () => {
   );
 };
 
-export default AgregarProducto;
+export default withRouter(AgregarProducto);

@@ -3,7 +3,7 @@
     {
       "precioPlatillo": "200",
       "nombrePlatillo": "Cheesecake",
-      "categoria": "Postres",
+      "categoria": "postres",
       "id": 1
     },
     {
@@ -23,6 +23,48 @@
       "precioPlatillo": "1443",
       "categoria": "bebida",
       "id": 4
+    },
+    {
+      "nombrePlatillo": "metallica",
+      "precioPlatillo": "1234",
+      "categoria": "postre",
+      "id": 5
+    },
+    {
+      "nombrePlatillo": "asdad",
+      "precioPlatillo": "12",
+      "categoria": "cortes",
+      "id": 6
+    },
+    {
+      "nombrePlatillo": "asdf",
+      "precioPlatillo": "123",
+      "categoria": "cortes",
+      "id": 7
+    },
+    {
+      "nombrePlatillo": "sdf",
+      "precioPlatillo": "123",
+      "categoria": "cortes",
+      "id": 8
+    },
+    {
+      "nombrePlatillo": "dgdfgdsfg",
+      "precioPlatillo": "123",
+      "categoria": "cortes",
+      "id": 9
+    },
+    {
+      "nombrePlatillo": "fdsa",
+      "precioPlatillo": "123",
+      "categoria": "cortes",
+      "id": 10
+    },
+    {
+      "nombrePlatillo": "Ensalada de pollo",
+      "precioPlatillo": "123",
+      "categoria": "ensalada",
+      "id": 11
     }
   ]
 }

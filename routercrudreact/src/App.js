@@ -8,19 +8,29 @@ import axios from "axios";
 
 const App = () => {
   const [productos, setproductos] = useState([]);
+  const [nuevoProducto, setnuevoProducto] = useState(true);
   useEffect(() => {
-    const consultarApi = async () => {
-      const resultado = await axios.get("http://localhost:4000/restaurant");
-      setproductos(resultado.data);
-    };
-    consultarApi();
-  }, []);
+    if (nuevoProducto) {
+      const consultarApi = async () => {
+        const resultado = await axios.get("http://localhost:4000/restaurant");
+        setproductos(resultado.data);
+      };
+      consultarApi();
+      setnuevoProducto(false);
+    }
+  }, [nuevoProducto]);
   return (
     <Router>
       <Header />
       <main className="container mt-5">
         <Switch>
-          <Route exact path="/nuevo-producto" component={AgregarProducto} />
+          <Route
+            exact
+            path="/nuevo-producto"
+            render={() => (
+              <AgregarProducto setnuevoProducto={setnuevoProducto} />
+            )}
+          />
           <Route
             exact
             path="/productos"
@@ -29,7 +39,13 @@ const App = () => {
           <Route
             exact
             path="/productos/editar/:id"
-            component={EditarProducto}
+            render={props => {
+              const idProducto = parseInt(props.match.params.id);
+              const producto = productos.filter(
+                producto => producto.id === idProducto
+              );
+              return <EditarProducto producto={producto[0]} />;
+            }}
           />
         </Switch>
       </main>
