@@ -1,13 +1,55 @@
 import React, { useState, useRef } from "react";
 import Error from "./Error";
+import { withRouter } from "react-router-dom";
+import axios from "axios";
+import Swal from "sweetalert2";
 
-const EditarProducto = ({ producto }) => {
+const EditarProducto = ({ producto, history, setnuevoProducto }) => {
   const precioPlatillloRef = useRef("");
   const nombrePlatilloRef = useRef("");
 
   const [error, seterror] = useState(false);
   const [categoria, setcategoria] = useState("");
-  const editarProducto = e => {};
+  const editarProducto = async e => {
+    e.preventDefault();
+
+    const nuevoValorPlatillo = precioPlatillloRef.current.value,
+      nuevoNombrePlatillo = nombrePlatilloRef.current.value;
+    if (nuevoNombrePlatillo === "" || nuevoValorPlatillo === "") {
+      seterror(true);
+      return;
+    } else {
+      seterror(false);
+    }
+
+    let categoriPlatillo = categoria === "" ? producto.categoria : categoria;
+    const editarPlatillo = {
+      nombrePlatillo: nuevoNombrePlatillo,
+      precioPlatillo: nuevoValorPlatillo,
+      categoria: categoriPlatillo
+    };
+    console.log(editarPlatillo);
+    //enviar el request
+    const url = `http://localhost:4000/restaurant/${producto.id}`;
+    try {
+      const resultado = await axios.put(url, editarPlatillo);
+      if (resultado.status === 200) {
+        Swal.fire(
+          "Producto Editado",
+          "El producto se editó correctamente",
+          "success"
+        );
+        setnuevoProducto(true);
+        history.push("/productos");
+      }
+    } catch (error) {
+      Swal.fire({
+        type: "error",
+        title: "Error",
+        text: "Hubo un error, vuelve a intentarlo"
+      });
+    }
+  };
   const leerValorCategoria = e => {
     setcategoria(e.target.value);
   };
@@ -100,4 +142,4 @@ const EditarProducto = ({ producto }) => {
   );
 };
 
-export default EditarProducto;
+export default withRouter(EditarProducto);

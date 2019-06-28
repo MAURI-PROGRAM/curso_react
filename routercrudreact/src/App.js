@@ -34,7 +34,12 @@ const App = () => {
           <Route
             exact
             path="/productos"
-            render={() => <Productos productos={productos} />}
+            render={() => (
+              <Productos
+                productos={productos}
+                setnuevoProducto={setnuevoProducto}
+              />
+            )}
           />
           <Route
             exact
@@ -44,7 +49,12 @@ const App = () => {
               const producto = productos.filter(
                 producto => producto.id === idProducto
               );
-              return <EditarProducto producto={producto[0]} />;
+              return (
+                <EditarProducto
+                  producto={producto[0]}
+                  setnuevoProducto={setnuevoProducto}
+                />
+              );
             }}
           />
         </Switch>
