@@ -12,6 +12,9 @@ export default function(state = initialState, action) {
       };
       break;
     default:
+      return {
+        ...state
+      };
       break;
   }
 }

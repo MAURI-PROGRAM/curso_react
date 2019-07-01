@@ -1,2 +1,5 @@
 import { combineReducers } from "redux";
-export default combineReducers({});
+import citasReducer from "./citasReducer";
+export default combineReducers({
+  citas: citasReducer
+});
