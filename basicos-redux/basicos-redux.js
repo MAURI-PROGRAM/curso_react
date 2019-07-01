@@ -8,7 +8,7 @@ const stateInicial = {
 };
 //reducer
 //state y accion
-const reducerPrincipal = (state = stateInicial, action) => {
+const reducerPrincipal = (state, action) => {
   if (action.type === "AGREGAR_USUARIO") {
     return {
       ...state,
@@ -24,13 +24,17 @@ const reducerPrincipal = (state = stateInicial, action) => {
 };
 
 //toma 3 paremetros: reducer , state ini, aplymiddleawere
-const store = createStore(reducerPrincipal);
+const store = createStore(reducerPrincipal, stateInicial);
 
 console.log(store.getState());
+//suscribe o suscripcion
+store.subscribe(() => {
+  console.log("algo cambio...", store.getState());
+});
+
 //dispatch : forma en qu se cambia el state
 store.dispatch({ type: "AGREGAR_USUARIO", nombre: "Michael" });
-console.log(store.getState());
+
 store.dispatch({ type: "AGREGAR_USUARIO", nombre: "Michael" });
-console.log(store.getState());
+
 store.dispatch({ type: "MOSTRAR_USUARIOS" });
-console.log(store.getState());
