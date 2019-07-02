@@ -10,11 +10,9 @@ export default function(state = initialState, action) {
       return {
         ...state
       };
-      break;
     default:
       return {
         ...state
       };
-      break;
   }
 }
