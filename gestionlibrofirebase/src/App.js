@@ -1,5 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import store from "./store";
+import { Provider } from "react-redux";
+
+import Navbar from "./components/layout/Navbar";
 
 import Suscriptores from "./components/suscriptores/Suscriptores";
 import EditarSuscriptores from "./components/suscriptores/EditarSuscriptores";
@@ -8,27 +12,32 @@ import NuevoSuscriptores from "./components/suscriptores/NuevoSuscriptores";
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route
-          exact
-          patch="/suscriptores/nuevo"
-          component={NuevoSuscriptores}
-        />
-        <Route
-          exact
-          patch="/suscriptores/mostrar/:id"
-          component={MostrarSuscriptores}
-        />
+    <Provider store={store}>
+      <Router>
+        <Navbar />
+        <div className="container">
+          <Switch>
+            <Route exact path="/suscriptores" component={Suscriptores} />
+            <Route
+              exact
+              path="/suscriptores/mostrar/:id"
+              component={MostrarSuscriptores}
+            />
+            <Route
+              exact
+              path="/suscriptores/nuevo"
+              component={NuevoSuscriptores}
+            />
 
-        <Route
-          exact
-          patch="/suscriptores/editar/:id"
-          component={EditarSuscriptores}
-        />
-        <Route exact patch="/suscriptores" component={Suscriptores} />
-      </Switch>
-    </Router>
+            <Route
+              exact
+              path="/suscriptores/editar/:id"
+              component={EditarSuscriptores}
+            />
+          </Switch>
+        </div>
+      </Router>
+    </Provider>
   );
 }
 
