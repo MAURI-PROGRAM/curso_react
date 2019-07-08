@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import store from "./store";
 import { Provider } from "react-redux";
 
-import Navbar from "./components/layout/Navbar";
+import Navbarthis from "./components/layout/Navbarthis";
 
 import Suscriptores from "./components/suscriptores/Suscriptores";
 import EditarSuscriptores from "./components/suscriptores/EditarSuscriptores";
@@ -14,7 +14,7 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <Navbar />
+        <Navbarthis />
         <div className="container">
           <Switch>
             <Route exact path="/suscriptores" component={Suscriptores} />

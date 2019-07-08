@@ -15,7 +15,7 @@ const MostrarSuscriptores = ({ suscriptor }) => {
           <i className="fas fa-arrow-circle-left" /> Volver al listado
         </Link>
       </div>
-      <div className="col-md-6">
+      <div className="col-md-6 ">
         <Link
           to={`/suscriptores/editar/${suscriptor.id}`}
           className="btn btn-primary float-right"
